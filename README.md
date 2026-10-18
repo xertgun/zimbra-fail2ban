@@ -1,5 +1,5 @@
 # 🧱 Zimbra Fail2Ban Security Protection Rules
-Comprehensive Fail2Ban filters and jail configuration designed to protect Zimbra Collaboration Suite (ZCS 8.8.15) against brute-force attacks, webshell/PHP scanners, command injection, and exploit attempts.
+Comprehensive Fail2Ban filters, jail configuration, and automated daily email defense reporter designed to protect Zimbra Collaboration Suite (ZCS 8.8.15) against brute-force attacks, webshell/PHP scanners, command injection, and exploit attempts.
 > 📌 Tested & Compatible with: Zimbra Collaboration Suite 8.8.15 (ZCS 8.8.15 GA) running on Ubuntu / Debian / RHEL.
 
 ## 🛡️ Protected Modules & Attack Vectors
@@ -47,6 +47,33 @@ Comprehensive Fail2Ban filters and jail configuration designed to protect Zimbra
    ```bash
    sudo systemctl restart fail2ban
    sudo fail2ban-client status
+   ```
+
+## 📊 Automated Daily HTML Defense Reporter
+This repository includes `reportf2b-daily.sh`, an automated script that parses Fail2Ban logs and sends a clean, responsive HTML defense report containing:
+- Ban counts grouped by Jail
+- Hourly attack intensity breakdown
+- Top 5 aggressive attacker IP addresses
+- Total currently active banned IPs
+
+### Setup Daily Reporter Script:
+   1. Copy script and make it executable:
+   ```bash
+   sudo cp reportf2b-daily.sh /usr/local/bin/reportf2b-daily
+   sudo chmod +x /usr/local/bin/reportf2b-daily
+   ```
+
+   2. Edit the script to configure your email address:
+   ```bash
+   sudo nano /usr/local/bin/reportf2b-daily
+   # Change RECIPIENT="admin@yourdomain.com"
+   ```
+
+   3. Add to Root Crontab (`sudo crontab -e`) to schedule daily execution at 22:50:
+   ```cron
+   
+   # Send Fail2Ban Daily Defense Report every night at 22:50
+   50 22 * * * /usr/local/bin/reportf2b-daily > /dev/null 2>&1
    ```
 
 ## 🔗 Related Projects
