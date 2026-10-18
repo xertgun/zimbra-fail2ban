@@ -1,0 +1,71 @@
+[DEFAULT]
+ignoreip = 127.0.0.1/8 ::1
+destemail = admin@yourdomain.com
+sender = fail2ban@yourdomain.com
+mta = sendmail
+action = %(action_mw)s
+
+[zimbra-smtp]
+enabled  = true
+filter   = zimbra-smtp
+port     = 25,465,587
+logpath  = /var/log/zimbra.log
+maxretry = 3
+findtime = 3600
+bantime  = 86400
+
+[zimbra-web]
+enabled  = true
+filter   = zimbra-web
+port     = 80,443,7071,9071
+logpath  = /opt/zimbra/log/mailbox.log
+maxretry = 3
+findtime = 3600
+bantime  = 86400
+
+[zimbra-web-exploit]
+enabled  = true
+filter   = zimbra-web-exploit
+port     = http,https,7071,9071
+logpath  = /opt/zimbra/log/nginx.access.log
+maxretry = 2
+findtime = 600
+bantime  = 86400
+backend  = polling
+
+[zimbra-exploit]
+enabled  = true
+filter   = zimbra-exploit
+port     = 25,80,443,465,587,7071,9071
+logpath  = /var/log/zimbra.log
+maxretry = 3
+findtime = 600
+bantime  = 86400
+
+[zimbra-php-scan]
+enabled  = true
+filter   = zimbra-php-scan
+port     = http,https
+logpath  = /opt/zimbra/log/nginx.access.log
+maxretry = 3
+findtime = 600
+bantime  = 86400
+backend  = polling
+
+[zimbra-cmd-injection]
+enabled  = true
+filter   = zimbra-cmd-injection
+port     = 25,465,587
+logpath  = /var/log/zimbra.log
+maxretry = 3
+findtime = 600
+bantime  = 86400
+
+[zimbra-audit]
+enabled  = true
+filter   = zimbra-audit
+port     = 80,443,25,465,587,110,995,143,993,7071,7073
+logpath  = /opt/zimbra/log/audit.log
+maxretry = 3
+findtime = 600
+bantime  = 86400
