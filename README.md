@@ -76,5 +76,16 @@ This repository includes `reportf2b-daily.sh`, an automated script that parses F
    50 22 * * * /usr/local/bin/reportf2b-daily > /dev/null 2>&1
    ```
 
+## 💡 Why This Project Exists
+   This project was created after multiple real-world intrusion attempts against Zimbra 8.8.15 servers.
+   The default Zimbra and standard Fail2Ban configurations were not providing enough visibility against:
+   - Webmail brute force
+   - SOAP attacks
+   - Command injection attempts
+   - PHP scanner probes
+   - Vulnerability scanners
+
+This repository contains production-tested filters and reporting tools.
+
 ## 🔗 Related Projects
 - [zimbra-security-check](https://github.com/xertgun/zimbra-security-check): Daily integrity scanner & automated incident reporter for Zimbra.
