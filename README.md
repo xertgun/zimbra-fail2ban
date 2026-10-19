@@ -71,7 +71,16 @@ This repository includes automated reporting scripts inside the `scripts/` direc
    # Change RECIPIENT="admin@yourdomain.com"
    ```
 
-   3. Add to Root Crontab (`sudo crontab -e`) to schedule daily execution at 22:50:
+   3. Note for Non-Zimbra / Standard Postfix Servers:
+   ```conf
+   If you are installing this script on a standard Linux server rather than Zimbra ZCS,
+   make sure to change the sendmail path at the very bottom of the script from:
+      /opt/zimbra/common/sbin/sendmail -t
+   to:
+      /usr/sbin/sendmail -t
+   ```
+
+   4. Add to Root Crontab (`sudo crontab -e`) to schedule daily execution at 22:50:
    ```cron
    # Send Fail2Ban Weekly Security Summary every Monday at 09:00
    00 09 * * 1 /usr/local/bin/reportf2b-weekly > /dev/null 2>&1
