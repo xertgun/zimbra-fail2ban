@@ -89,3 +89,4 @@ This repository contains production-tested filters and reporting tools.
 
 ## 🔗 Related Projects
 - [zimbra-security-check](https://github.com/xertgun/zimbra-security-check): Daily integrity scanner & automated incident reporter for Zimbra.
+- [zimbra-certbot-renew](https://github.com/xertgun/zimbra-certbot-renew) - Automated Let's Encrypt SSL certificate renewal and zero-downtime deployment script for Zimbra ZCS.
